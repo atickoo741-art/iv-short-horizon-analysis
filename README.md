@@ -12,7 +12,7 @@ The project investigates whether short-dated implied volatility exhibits structu
 - Analyzed behavior across different market conditions
 
 # Important
-This repository currently contains project documentation only. Source code and datasets are private and not included.
+This repository currently contains project documentation only.  Source code and datasets are private and not included.
 
 # Disclaimer
 This project is for informational and educational purposes only and does not constitute investment advice.
