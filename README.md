@@ -3,7 +3,7 @@
 This repository documents a personal statistical research project exploring the short-horizon behavior of implied volatility in one-day-to-expiration (1-DTE) equity options.
 
 # Overview
-The project investigates whether short-dated implied volatility exhibits structure beyond simple persistence assumptions over intraday intervals. The focus is on empirical analysis and statistical evaluation rather than trading performance.
+The project investigates whether short-dated implied volatility exhibits structure beyond simple persistence assumptions over intraday intervals. The focus is on empirical analysis and statistical evaluation instead of trading performance.
 
 # Methodology
 - Collected short-dated equity option chain data at regular intraday intervals
