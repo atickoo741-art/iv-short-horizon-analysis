@@ -1,92 +1,121 @@
-# Short-Horizon Analysis of Implied Volatility in 1-Day-to-Expiration Equity Options
+An Empirical Study of Earnings Event Volatility Mispricing
+Overview
 
-This repository documents a personal research project examining the short-horizon behavior of implied volatility in one-day-to-expiration (1-DTE) equity options. The goal of the project is to study whether short-dated implied volatility exhibits structure beyond simple persistence assumptions over intraday time intervals.
+This project investigates how implied volatility behaves leading up to corporate earnings announcements and examines whether the commonly observed pre-earnings “IV ramp” reflects genuine repricing of risk or is largely a mechanical effect of time passing.
 
-The focus is on empirical statistical analysis and methodological clarity rather than trading outcomes or performance.
+By decomposing total implied volatility into ambient (background) volatility and event-specific (earnings jump) volatility, the analysis shows that rising implied volatility before earnings does not, by itself, imply positive expected value. Instead, any persistent edge must come from mispricing of the event volatility component relative to historical outcomes.
 
+This repository presents the research framework, methodology, and empirical findings. It is intended as a study of volatility pricing dynamics and market structure rather than a trading recommendation.
 
-# Project Overview
+Research Motivation
 
-Implied volatility for ultra-short-dated options is often treated as highly noisy and reactive. This project explores whether measurable short-term structure exists in 1-DTE option implied volatility when observed at regular intraday intervals.
+A common narrative among options traders is that buying straddles before earnings is profitable because implied volatility tends to rise as the announcement approaches. However, implied volatility is an annualized measure that aggregates variance over the remaining life of an option.
 
-Rather than attempting to optimize trading strategies, the project evaluates short-horizon behavior by comparing observed IV changes to a naïve persistence-based baseline.
+As time passes and low-volatility “ambient” days roll off, the same fixed earnings event variance is averaged over fewer days, mechanically increasing quoted implied volatility. This raises the question:
 
+Does the IV ramp represent new information being priced, or is it primarily a mathematical artifact?
 
+This project addresses that question empirically.
 
-# Data Scope
+Conceptual Framework
 
-- Equity option chain snapshots collected at fixed intraday intervals  
-- Focus on contracts with one day or less to expiration  
-- Analysis centered on near-the-money contracts selected by strike proximity or delta range  
+The analysis separates implied volatility into two components:
 
-All data handling is structured to support repeatable statistical evaluation.
+Ambient Volatility
+The background day-to-day volatility of the stock outside of earnings events.
 
----
+Event (Earnings) Volatility
+A one-day jump component representing the market’s expected earnings move.
 
-# Methodology
+Using variance additivity, total variance over an option’s life is modeled as the sum of ambient variance across non-event days and a single event-day variance. This decomposition allows the implied earnings move to be estimated and compared against historical implied and realized outcomes.
 
-1. Option Chain Data
+Dataset
 
-2. Filter 1-DTE Contracts
+Universe: Liquid U.S. equities
 
-3. Select Near-ATM Strikes
+Liquidity Filter: ≥ 20,000 average daily option contracts traded
 
-4. Compute Implied Volatility Metrics
+Sample Size: 21,000+ pre-earnings observations
 
-5. Baseline Model (IV Persistence)
+Time Period: 2009–present
 
-6. Short-Horizon IV Change Measurement
+Instruments: At-the-money straddles
 
-7. Statistical Evaluation and Visualization
+Expiration: Nearest monthly expiration after earnings
 
+Holding Period: ~14 days pre-earnings, exit before announcement
 
-# Algorithm Outline (Pseudocode)
+Costs: Realistic commissions, slippage, and liquidity constraints included
 
-For each trading day:
-Retrieve option chain snapshots at fixed intraday intervals
+The analysis explicitly avoids holding positions through the earnings announcement to isolate volatility repricing effects from earnings gap risk.
 
-For each snapshot:
-    Filter contracts with DTE ≤ 1
-    Select near-the-money contracts
-    Record implied volatility metrics
+Methodology
+Signal Construction
 
-For each time step:
-    Measure short-horizon IV changes
-    Compare observed IV to persistence-based baseline
-    Store error metrics for analysis
+For each earnings event, the following relative measures are computed:
 
-Aggregate results across trading days and evaluate statistical behavior.
+Current implied earnings move vs. prior earnings implied move
 
+Current implied earnings move vs. historical average implied move
 
----
+Current implied earnings move vs. prior realized earnings move
 
-## Evaluation Approach
+Current implied earnings move vs. historical average realized earnings move
 
-Analysis focuses on:
-- Short-horizon IV changes across intraday intervals  
-- Comparison against a naïve persistence assumption  
-- Error behavior and stability across different market conditions  
+Absolute implied volatility levels are evaluated but found to be weaker and less stable predictors.
 
-Results are evaluated using standard statistical error measures and visual analysis.
+Empirical Testing
 
----
+Decile-based analysis to evaluate monotonic relationships
 
-## Current Status
+Correlation and multicollinearity checks (VIF)
 
-This repository contains documentation and methodological outlines only. Source code, datasets, and implementation details are intentionally excluded at this stage.
+Walk-forward out-of-sample testing with expanding windows
 
----
+Regime stability analysis across multiple market environments
 
-## Notes
+All model validation is performed strictly out of sample to avoid look-ahead bias.
 
-- This project is exploratory and research-focused  
-- No claims are made regarding profitability or trading performance  
-- The repository is intended to document methodology and analytical approach  
+Key Findings
 
----
+The pre-earnings IV ramp is largely mechanical and does not imply positive expected value on its own
 
-## Disclaimer
+Absolute implied volatility levels are weak and unstable predictors
 
-This project is for informational and educational purposes only and does not constitute investment advice.
+Relative implied vs. historical implied and realized earnings measures exhibit stable, monotonic relationships with outcomes
 
+These relationships persist across time and market regimes under walk-forward testing
 
+The results suggest that persistent mispricing exists at the event volatility level rather than in implied volatility broadly.
+
+Implementation Notes
+
+While the research framework can be translated into systematic strategies, this repository focuses on:
+
+Empirical validation
+
+Signal robustness
+
+Proper research hygiene
+
+No live trading signals or proprietary parameters are disclosed.
+
+Tech Stack
+
+Python
+
+NumPy, Pandas, SciPy
+
+statsmodels
+
+Custom backtesting and data pipelines
+
+Disclaimer
+
+This project is for educational and research purposes only.
+It does not constitute investment advice or a recommendation to trade securities.
+
+Author
+
+Vasu Tickoo
+Quantitative Research Project
