@@ -132,7 +132,7 @@ Code is kept private and not included in the repository.
 AUTHOR
 ------
 Aditya Tickoo
+
 Independent Research Project
 
-============================================================
 
