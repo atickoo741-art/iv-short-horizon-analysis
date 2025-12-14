@@ -24,14 +24,21 @@ system and does not generate executable trade signals.
 DATASET
 -------
 Universe        : Liquid U.S. equities
+
 Liquidity filter: >= 20,000 avg daily option contracts
+
 Sample size     : 21,000+ pre-earnings observations
+
 Time period     : 2009 - present
 
 Instrument      : ATM straddles
+
 Entry timing    : ~14 days before earnings
+
 Exit timing     : Prior to earnings announcement
+
 Earnings gap    : Explicitly excluded
+
 Costs modeled   : Commissions, slippage, liquidity constraints
 
 --------------------------------------------------------------------
