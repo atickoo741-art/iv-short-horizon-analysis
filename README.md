@@ -23,21 +23,21 @@ All data handling is structured to support repeatable statistical evaluation.
 
 ---
 
-# Methodology (High-Level)
+# Methodology
 
-Option Chain Data
-↓
-Filter 1-DTE Contracts
-↓
-Select Near-ATM Strikes
-↓
-Compute Implied Volatility Metrics
-↓
-Baseline Model (IV Persistence)
-↓
-Short-Horizon IV Change Measurement
-↓
-Statistical Evaluation and Visualization
+1. Option Chain Data
+
+2. Filter 1-DTE Contracts
+
+3. Select Near-ATM Strikes
+
+4. Compute Implied Volatility Metrics
+
+5. Baseline Model (IV Persistence)
+
+6. Short-Horizon IV Change Measurement
+
+7. Statistical Evaluation and Visualization
 
 
 # Algorithm Outline (Pseudocode)
