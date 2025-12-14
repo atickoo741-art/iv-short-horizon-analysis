@@ -19,8 +19,8 @@ of the earnings event volatility relative to historical outcomes.
 **This repository contains research only. It is not a live trading
 system and does not generate executable trade signals.
 **
+**Code not included**
 
-**CODE NOT INCLUDED**
 --------------------------------------------------------------------
 
 DATASET
