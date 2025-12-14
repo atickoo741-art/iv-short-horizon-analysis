@@ -16,9 +16,11 @@ The analysis shows that rising implied volatility alone does not imply
 positive expected value. Any persistent edge must come from mispricing
 of the earnings event volatility relative to historical outcomes.
 
-This repository contains research code only. It is not a live trading
+**This repository contains research only. It is not a live trading
 system and does not generate executable trade signals.
+**
 
+**CODE NOT INCLUDED**
 --------------------------------------------------------------------
 
 DATASET
