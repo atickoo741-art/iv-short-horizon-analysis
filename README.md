@@ -1,115 +1,136 @@
 
-# An Empirical Study of Earnings Event Volatility Mispricing
+# An Empirical Study of Earnings Event Volatility
 
 
-DESCRIPTION
------------
-This project analyzes how implied volatility behaves prior to corporate
-earnings announcements and tests whether the pre-earnings "IV ramp"
-represents genuine repricing of risk or a mechanical effect of time decay.
+OVERVIEW
+--------
+This project looks at how implied volatility changes before corporate
+earnings announcements and whether the common “IV ramp” actually
+creates an edge. Many traders believe that buying options before
+earnings is profitable simply because implied volatility usually rises
+as the announcement approaches. This study tests whether that belief
+is supported by data.
 
-Total implied volatility is decomposed into two components:
-  (1) Ambient (background) volatility
-  (2) Event-specific (earnings jump) volatility
+By separating implied volatility into normal day-to-day movement and
+earnings-specific movement, the project shows that rising implied
+volatility alone does not mean expected returns are increasing.
 
-The analysis shows that rising implied volatility alone does not imply
-positive expected value. Any persistent edge must come from mispricing
-of the earnings event volatility relative to historical outcomes.
+------------------------------------------------------------
 
-**This repository contains research only. It is not a live trading
-system and does not generate executable trade signals.
-**
-**Code not included**
+MAIN QUESTION
+-------------
+Is the increase in implied volatility before earnings caused by the
+market updating its expectations, or is it mostly a mechanical result
+of time passing?
 
---------------------------------------------------------------------
+If the IV ramp is mostly mechanical, then strategies that rely only on
+“buying the ramp” should lose money over time.
 
-DATASET
--------
-Universe        : Liquid U.S. equities
+------------------------------------------------------------
 
-Liquidity filter: >= 20,000 avg daily option contracts
+CORE IDEA
+---------
+Implied volatility before earnings can be broken into two parts:
 
-Sample size     : 21,000+ pre-earnings observations
+1) Ambient volatility  
+   The stock’s usual day-to-day movement when no major events occur.
 
-Time period     : 2009 - present
+2) Event (earnings) volatility  
+   The one-day move the market expects from the earnings announcement.
 
-Instrument      : ATM straddles
+As earnings get closer, normal trading days are removed from the time
+window while the earnings day remains. Because the same earnings risk
+is spread across fewer days, quoted implied volatility increases even
+if expectations do not change.
 
-Entry timing    : ~14 days before earnings
+This creates the IV ramp.
 
-Exit timing     : Prior to earnings announcement
+------------------------------------------------------------
 
-Earnings gap    : Explicitly excluded
+DATA USED
+---------
+• Liquid U.S. stocks with active options markets  
+• Over 21,000 pre-earnings observations  
+• Data from 2009 to the present  
 
-Costs modeled   : Commissions, slippage, liquidity constraints
+Each observation looks at at-the-money options entered roughly two
+weeks before earnings and exited before the announcement. Earnings
+day risk is intentionally avoided so the focus stays on volatility
+behavior, not earnings surprises.
 
---------------------------------------------------------------------
+Transaction costs and liquidity constraints are included to keep the
+results realistic.
 
-METHODOLOGY
-----------
-1. Identify pre-earnings option expiries spanning the earnings date
-2. Estimate ambient volatility using pre-event or forward volatility
-3. Back out event (earnings) volatility via variance additivity
-4. Convert event volatility into implied earnings move
-5. Compare implied earnings moves to:
-     - Prior implied earnings move
-     - Historical average implied earnings move
-     - Prior realized earnings move
-     - Historical average realized earnings move
-6. Evaluate relationships using decile analysis and monotonicity tests
-7. Validate results using walk-forward, expanding-window OOS testing
+------------------------------------------------------------
 
---------------------------------------------------------------------
+WHAT WAS ANALYZED
+----------------
+The study compares the market’s current implied earnings move to:
+
+• The implied move from the previous earnings  
+• The average implied move from past earnings  
+• The actual move from the previous earnings  
+• The average actual move from past earnings  
+
+These comparisons help determine whether the market is pricing the
+earnings event cheaply or expensively relative to history.
+
+------------------------------------------------------------
+
+HOW RESULTS WERE TESTED
+----------------------
+The data is grouped into buckets based on these comparisons, and
+returns are analyzed across time to see whether patterns are
+consistent.
+
+To avoid using future information, the study uses walk-forward
+testing, where models are evaluated only on data that comes after
+they are built.
+
+------------------------------------------------------------
 
 KEY FINDINGS
 ------------
-- The pre-earnings IV ramp is largely mechanical
-- Absolute implied volatility levels are weak predictors
-- Relative implied vs historical implied/realized measures show
-  stable, monotonic relationships with outcomes
-- Predictive relationships persist across time and market regimes
-- Mispricing exists at the event volatility level, not in IV broadly
+• Implied volatility usually rises before earnings, but this alone is
+  not a reliable edge  
+• Absolute implied volatility levels do not explain returns well  
+• Relative comparisons to past implied and realized earnings moves are
+  much more informative  
+• These patterns hold up across different market periods  
 
---------------------------------------------------------------------
+------------------------------------------------------------
 
-REPO STRUCTURE
---------------
-/data        : raw, interim, and processed datasets (not tracked)
-/src         : core research modules
-/scripts     : pipeline execution scripts
-/notebooks   : exploratory analysis
-/outputs     : figures and summary tables
+WHAT THIS MEANS
+---------------
+The IV ramp happens mostly because of how volatility is calculated,
+not because the market is consistently changing its expectations.
 
---------------------------------------------------------------------
+Any potential edge comes from identifying when the market is
+underpricing the earnings move compared to its own history, not from
+buying volatility simply because earnings are approaching.
 
-TECH STACK
-----------
-Python
-NumPy
-Pandas
-SciPy
-statsmodels
-Custom research & backtesting pipeline
+------------------------------------------------------------
 
---------------------------------------------------------------------
+LIMITATIONS
+-----------
+• Results are based on historical data  
+• Market structure can change over time  
+• Findings do not guarantee future performance  
+• This project does not predict earnings direction  
 
-NOTES
------
-- All validation is strictly out-of-sample
-- Walk-forward testing uses expanding windows
-- No proprietary parameters or live trading logic included
-
---------------------------------------------------------------------
+------------------------------------------------------------
 
 DISCLAIMER
 ----------
-This project is for educational and research purposes only.
-It does not constitute investment advice.
+This project is for educational and research purposes only and does
+not provide investment advice.
 
---------------------------------------------------------------------
+------------------------------------------------------------
 
 AUTHOR
 ------
 Vasu Tickoo
-Empirical Volatility Research
-====================================================================
+Independent Research Project
+
+============================================================
+
