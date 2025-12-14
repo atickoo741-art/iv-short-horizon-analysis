@@ -125,11 +125,13 @@ DISCLAIMER
 This project is for educational and research purposes only and does
 not provide investment advice.
 
+Code is kept private and not included in the repository.
+
 ------------------------------------------------------------
 
 AUTHOR
 ------
-Vasu Tickoo
+Aditya Tickoo
 Independent Research Project
 
 ============================================================
