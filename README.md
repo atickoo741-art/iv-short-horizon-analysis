@@ -5,17 +5,17 @@ This project investigates how implied volatility behaves leading up to corporate
 
 By decomposing total implied volatility into ambient (background) volatility and event-specific (earnings jump) volatility, the analysis shows that rising implied volatility before earnings does not, by itself, imply positive expected value. Instead, any persistent edge must come from mispricing of the event volatility component relative to historical outcomes.
 
-This repository presents the research framework, methodology, and empirical findings. It is intended as a study of volatility pricing dynamics and market structure rather than a trading recommendation.
+This repository presents the research framework, methodology, and empirical findings. It is intended as a study of volatility pricing dynamics rather than a trading recommendation.
 
 Research Motivation
 
 A common narrative among options traders is that buying straddles before earnings is profitable because implied volatility tends to rise as the announcement approaches. However, implied volatility is an annualized measure that aggregates variance over the remaining life of an option.
 
-As time passes and low-volatility “ambient” days roll off, the same fixed earnings event variance is averaged over fewer days, mechanically increasing quoted implied volatility. This raises the question:
+As time passes and lower-volatility ambient days roll off, the same fixed earnings event variance is averaged over fewer remaining days, mechanically increasing quoted implied volatility.
+
+This raises the core research question:
 
 Does the IV ramp represent new information being priced, or is it primarily a mathematical artifact?
-
-This project addresses that question empirically.
 
 Conceptual Framework
 
@@ -33,70 +33,64 @@ Dataset
 
 Universe: Liquid U.S. equities
 
-Liquidity Filter: ≥ 20,000 average daily option contracts traded
+Liquidity Filter: ≥ 20,000 average daily option contracts
 
 Sample Size: 21,000+ pre-earnings observations
 
 Time Period: 2009–present
 
-Instruments: At-the-money straddles
+Instrument: At-the-money straddles
 
 Expiration: Nearest monthly expiration after earnings
 
-Holding Period: ~14 days pre-earnings, exit before announcement
+Holding Period: ~14 days before earnings, exit prior to announcement
 
-Costs: Realistic commissions, slippage, and liquidity constraints included
+Transaction Costs: Commissions, slippage, and liquidity constraints included
 
-The analysis explicitly avoids holding positions through the earnings announcement to isolate volatility repricing effects from earnings gap risk.
+The analysis explicitly avoids holding positions through the earnings announcement in order to isolate volatility repricing effects from earnings gap risk.
 
 Methodology
 Signal Construction
 
 For each earnings event, the following relative measures are computed:
 
-Current implied earnings move vs. prior earnings implied move
+Current implied earnings move vs prior earnings implied move
 
-Current implied earnings move vs. historical average implied move
+Current implied earnings move vs historical average implied move
 
-Current implied earnings move vs. prior realized earnings move
+Current implied earnings move vs prior realized earnings move
 
-Current implied earnings move vs. historical average realized earnings move
+Current implied earnings move vs historical average realized earnings move
 
 Absolute implied volatility levels are evaluated but found to be weaker and less stable predictors.
 
 Empirical Testing
 
-Decile-based analysis to evaluate monotonic relationships
+Decile-based performance analysis
 
 Correlation and multicollinearity checks (VIF)
 
-Walk-forward out-of-sample testing with expanding windows
+Walk-forward out-of-sample testing using expanding windows
 
-Regime stability analysis across multiple market environments
+Stability checks across multiple market regimes
 
-All model validation is performed strictly out of sample to avoid look-ahead bias.
+All model evaluation is performed strictly out of sample to avoid look-ahead bias.
 
 Key Findings
 
-The pre-earnings IV ramp is largely mechanical and does not imply positive expected value on its own
+The pre-earnings implied volatility ramp is largely mechanical and does not imply positive expected value by itself
 
-Absolute implied volatility levels are weak and unstable predictors
+Absolute implied volatility levels show weak and unstable relationships with outcomes
 
-Relative implied vs. historical implied and realized earnings measures exhibit stable, monotonic relationships with outcomes
+Relative implied versus historical implied and realized earnings measures exhibit stable, monotonic relationships
 
-These relationships persist across time and market regimes under walk-forward testing
+These relationships persist across time and market regimes under walk-forward validation
 
-The results suggest that persistent mispricing exists at the event volatility level rather than in implied volatility broadly.
+The results indicate that persistent mispricing exists at the event volatility level rather than in implied volatility more broadly.
 
 Implementation Notes
 
-While the research framework can be translated into systematic strategies, this repository focuses on:
-
-Empirical validation
-
-Signal robustness
-
-Proper research hygiene
+While the research framework can be translated into systematic strategies, this repository focuses on empirical analysis, signal robustness, and proper research methodology.
 
 No live trading signals or proprietary parameters are disclosed.
 
