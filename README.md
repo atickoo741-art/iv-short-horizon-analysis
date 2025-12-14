@@ -1,5 +1,5 @@
 
-#PROJECT: An Empirical Study of Earnings Event Volatility Mispricing
+# PROJECT: An Empirical Study of Earnings Event Volatility Mispricing
 
 
 DESCRIPTION
