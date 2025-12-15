@@ -1,138 +1,64 @@
+# Overview
 
-# An Empirical Study of Earnings Event Volatility
+This project studies how implied volatility (IV) behaves around earnings announcements and whether it provides useful information about post-earnings price movement. Earnings are major market events with high uncertainty, which makes them a good setting to test how well the options market prices risk.
 
+While implied volatility usually rises before earnings, this project looks deeper to see whether that increase actually signals meaningful information or is mostly a mechanical feature of how options are priced.
 
-OVERVIEW
---------
-This project looks at how implied volatility changes before corporate
-earnings announcements and whether the common “IV ramp” actually
-creates an edge. Many traders believe that buying options before
-earnings is profitable simply because implied volatility usually rises
-as the announcement approaches. This study tests whether that belief
-is supported by data.
+# Main Research Question
 
-By separating implied volatility into normal day-to-day movement and
-earnings-specific movement, the project shows that rising implied
-volatility alone does not mean expected returns are increasing.
+Does implied volatility before earnings help explain post-earnings price moves, or is the commonly observed volatility increase simply expected and already priced in?
 
-------------------------------------------------------------
+More specifically, the project examines whether comparing current implied volatility to a stock’s own historical earnings behavior provides more insight than looking at absolute volatility levels alone.
 
-MAIN QUESTION
--------------
-Is the increase in implied volatility before earnings caused by the
-market updating its expectations, or is it mostly a mechanical result
-of time passing?
+# Methodology
 
-If the IV ramp is mostly mechanical, then strategies that rely only on
-“buying the ramp” should lose money over time.
+To avoid using future information, the study uses walk-forward testing, meaning models and comparisons are built using only data available before each earnings event and evaluated only on data that comes afterward. This approach reflects how analysis would work in real time.
 
-------------------------------------------------------------
+The analysis compares:
 
-CORE IDEA
----------
-Implied volatility before earnings can be broken into two parts:
+Pre-earnings implied volatility
 
-1) Ambient volatility  
-   The stock’s usual day-to-day movement when no major events occur.
+Historical implied volatility around past earnings
 
-2) Event (earnings) volatility  
-   The one-day move the market expects from the earnings announcement.
+Historical realized price moves after earnings
 
-As earnings get closer, normal trading days are removed from the time
-window while the earnings day remains. Because the same earnings risk
-is spread across fewer days, quoted implied volatility increases even
-if expectations do not change.
+Instead of focusing on absolute volatility values, the project uses relative comparisons. Current implied volatility is evaluated against a stock’s own past earnings volatility to determine whether the market may be underpricing or overpricing the expected move.
 
-This creates the IV ramp.
+Data is analyzed across multiple time periods to check that patterns are not driven by a single market environment.
 
-------------------------------------------------------------
+# Key Findings
 
-DATA USED
----------
-• Liquid U.S. stocks with active options markets  
-• Over 21,000 pre-earnings observations  
-• Data from 2009 to the present  
+Implied volatility almost always increases before earnings.
 
-Each observation looks at at-the-money options entered roughly two
-weeks before earnings and exited before the announcement. Earnings
-day risk is intentionally avoided so the focus stays on volatility
-behavior, not earnings surprises.
+Absolute implied volatility levels do not explain post-earnings returns very well.
 
-Transaction costs and liquidity constraints are included to keep the
-results realistic.
+Comparing implied volatility to historical implied and realized earnings moves is much more informative.
 
-------------------------------------------------------------
+When implied volatility is low relative to a stock’s past earnings moves, post-earnings outcomes tend to be more uneven.
 
-WHAT WAS ANALYZED
-----------------
-The study compares the market’s current implied earnings move to:
+These patterns appear consistently across different market periods.
 
-• The implied move from the previous earnings  
-• The average implied move from past earnings  
-• The actual move from the previous earnings  
-• The average actual move from past earnings  
+# What This Means
 
-These comparisons help determine whether the market is pricing the
-earnings event cheaply or expensively relative to history.
+The pre-earnings volatility increase happens largely because of how volatility is calculated and how earnings risk is added into option prices, not because the market is consistently adjusting its expectations in a predictive way.
 
-------------------------------------------------------------
+Any potential edge comes from identifying situations where the market is mispricing earnings risk relative to its own history, rather than from simply buying volatility because earnings are approaching.
 
-HOW RESULTS WERE TESTED
-----------------------
-The data is grouped into buckets based on these comparisons, and
-returns are analyzed across time to see whether patterns are
-consistent.
+This suggests that earnings volatility should be analyzed on a stock-by-stock basis using historical context, instead of relying on broad assumptions.
 
-To avoid using future information, the study uses walk-forward
-testing, where models are evaluated only on data that comes after
-they are built.
+# Limitations
 
-------------------------------------------------------------
+Results are based on historical data and may change as market structure evolves.
 
-KEY FINDINGS
-------------
-• Implied volatility usually rises before earnings, but this alone is
-  not a reliable edge  
-• Absolute implied volatility levels do not explain returns well  
-• Relative comparisons to past implied and realized earnings moves are
-  much more informative  
-• These patterns hold up across different market periods  
+The project does not account for all real-world trading constraints.
 
-------------------------------------------------------------
+Findings describe tendencies, not guaranteed outcomes.
 
-WHAT THIS MEANS
----------------
-The IV ramp happens mostly because of how volatility is calculated,
-not because the market is consistently changing its expectations.
+This project does not predict earnings direction or fundamentals.
 
-Any potential edge comes from identifying when the market is
-underpricing the earnings move compared to its own history, not from
-buying volatility simply because earnings are approaching.
+# Disclaimer
 
-------------------------------------------------------------
+This project is for educational and research purposes only and does not provide investment advice.
+Past performance does not guarantee future results.
 
-LIMITATIONS
------------
-• Results are based on historical data  
-• Market structure can change over time  
-• Findings do not guarantee future performance  
-• This project does not predict earnings direction  
-
-------------------------------------------------------------
-
-DISCLAIMER
-----------
-This project is for educational and research purposes only and does
-not provide investment advice.
-
-Code is kept private and not included in the repository.
-
-------------------------------------------------------------
-
-AUTHOR
-------
-Aditya Tickoo
-
-Independent Research Project
-
-
+Code is kept private and is not included in the public repository.
