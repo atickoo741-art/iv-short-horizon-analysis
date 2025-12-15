@@ -12,7 +12,7 @@ More specifically, the project examines whether comparing current implied volati
 
 # Methodology
 
-To avoid using future information, the study uses walk-forward testing, meaning models and comparisons are built using only data available before each earnings event and evaluated only on data that comes afterward. This approach reflects how analysis would work in real time.
+To avoid using future information, the study uses walk-forward testing developed with python, meaning models and comparisons are built using only data available before each earnings event and evaluated only on data that comes afterward. This approach reflects how analysis would work in real time.
 
 The analysis compares:
 
