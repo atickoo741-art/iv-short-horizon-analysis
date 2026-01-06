@@ -60,5 +60,3 @@ This project does not predict earnings direction or fundamentals.
 
 This project is for educational and research purposes only and does not provide investment advice.
 Past performance does not guarantee future results.
-
-Code is kept private and is not included in the public repository.
