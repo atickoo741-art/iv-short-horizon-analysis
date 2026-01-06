@@ -1,62 +1,41 @@
-# Overview
+# Earnings Volatility: Is the Pre-Earnings "Ramp" Actually Informative?
 
-This project studies how implied volatility (IV) behaves around earnings announcements and whether it provides useful information about post-earnings price movement. Earnings are major market events with high uncertainty, which makes them a good setting to test how well the options market prices risk.
+## Project Overview
+Before a company reports earnings, there is almost always a noticeable spike in volatility. The common assumption is that this "ramp" indicates the market is bracing for a significant price move.
 
-While implied volatility usually rises before earnings, this project looks deeper to see whether that increase actually signals meaningful information or is mostly a mechanical feature of how options are priced.
+I built this project to test that assumption. I wanted to see if higher pre-earnings expectations actually correlate with larger realized moves, or if the volatility increase is largely mechanical and already priced in.
 
-# Main Research Question
+The Goal: To understand if earnings expectations are priced correctly relative to historical context, rather than trying to predict the direction of the stock price.
 
-Does implied volatility before earnings help explain post-earnings price moves, or is the commonly observed volatility increase simply expected and already priced in?
+## Methodology
+Because historical options data (implied volatility) is often difficult to source for free, I used a price-based proxy to model expectations:
 
-More specifically, the project examines whether comparing current implied volatility to a stock’s own historical earnings behavior provides more insight than looking at absolute volatility levels alone.
+Measuring Realized Moves: Calculated the absolute percentage change from the market close immediately before earnings to the first close after.
 
-# Methodology
+Building an Expectation Proxy: Used a "walk-forward" median of past earnings moves to simulate what a reasonable participant might expect based on the stock's own history.
 
-To avoid using future information, the study uses walk-forward testing developed with python, meaning models and comparisons are built using only data available before each earnings event and evaluated only on data that comes afterward. This approach reflects how analysis would work in real time.
+Relative Context: I scaled these expectations to see if they were high or low relative to that specific stock's history. This allowed for a cleaner comparison across different tickers like NVDA and JPM.
 
-The analysis compares:
+## Key Findings
 
-Pre-earnings implied volatility
+#### 1. Absolute Expectations are a Poor Predictor
+The walk-forward testing showed that expected moves are much smoother than actual outcomes. In many cases, massive earnings moves occurred even when expectations were at "normal" levels. Knowing that expectations are high doesn't necessarily mean the stock is going to move more than usual.
 
-Historical implied volatility around past earnings
+#### 2. The Signal is in the "Relative" Mispricing
+The most interesting results came from the bucket analysis. When looking at expectations relative to a stock's history:
 
-Historical realized price moves after earnings
+Low Relative Expectations: These events actually saw the largest median realized moves.
 
-Instead of focusing on absolute volatility values, the project uses relative comparisons. Current implied volatility is evaluated against a stock’s own past earnings volatility to determine whether the market may be underpricing or overpricing the expected move.
+High Relative Expectations: As the "hype" increased, the actual realized volatility tended to decrease.
 
-Data is analyzed across multiple time periods to check that patterns are not driven by a single market environment.
+This suggests that the market is often most surprised when it has become complacent—meaning the biggest moves happen when expectations are low compared to historical norms.
 
-# Key Findings
+## Conclusion
+The results suggest that the pre-earnings volatility ramp isn't an especially reliable predictor of the actual move size. Instead, the real "edge" appears to be in identifying relative mispricing—specifically when the market is under-pricing an event compared to how that stock has behaved in the past.
 
-Implied volatility almost always increases before earnings.
+## Limitations
+Universe: Analysis was limited to AAPL, NVDA, GOOGL, AMZN, and JPM (2022–2024).
 
-Absolute implied volatility levels do not explain post-earnings returns very well.
+Data: Used a price-based proxy instead of actual implied volatility from option chains.
 
-Comparing implied volatility to historical implied and realized earnings moves is much more informative.
-
-When implied volatility is low relative to a stock’s past earnings moves, post-earnings outcomes tend to be more uneven.
-
-These patterns appear consistently across different market periods.
-
-# What This Means
-
-The pre-earnings volatility increase happens largely because of how volatility is calculated and how earnings risk is added into option prices, not because the market is consistently adjusting its expectations in a predictive way.
-
-Any potential edge comes from identifying situations where the market is mispricing earnings risk relative to its own history, rather than from simply buying volatility because earnings are approaching.
-
-This suggests that earnings volatility should be analyzed on a stock-by-stock basis using historical context, instead of relying on broad assumptions.
-
-# Limitations
-
-Results are based on historical data and may change as market structure evolves.
-
-The project does not account for all real-world trading constraints.
-
-Findings describe tendencies, not guaranteed outcomes.
-
-This project does not predict earnings direction or fundamentals.
-
-# Disclaimer
-
-This project is for educational and research purposes only and does not provide investment advice.
-Past performance does not guarantee future results.
+Disclaimer: This is an educational project and does not constitute financial advice.
